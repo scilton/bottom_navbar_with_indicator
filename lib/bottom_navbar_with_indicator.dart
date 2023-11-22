@@ -21,7 +21,8 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   final double unselectedIconSize;
   final LinearGradient? gradient;
 
-  const CustomLineIndicatorBottomNavbar({super.key,
+  const CustomLineIndicatorBottomNavbar({
+    super.key,
     this.backgroundColor,
     this.selectedColor,
     required this.customBottomBarItems,
@@ -41,7 +42,7 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
-    BottomNavigationBarTheme.of(context);
+        BottomNavigationBarTheme.of(context);
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -108,7 +109,8 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   final double lineIndicatorWidth;
   final IndicatorType indicatorType;
 
-  const CustomLineIndicatorBottomNavbarItems({super.key,
+  const CustomLineIndicatorBottomNavbarItems({
+    super.key,
     this.icon,
     this.label,
     this.selectedColor,
@@ -129,7 +131,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
-    BottomNavigationBarTheme.of(context);
+        BottomNavigationBarTheme.of(context);
 
     return SafeArea(
       child: Padding(
@@ -145,25 +147,25 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
               decoration: BoxDecoration(
                 border: enableLineIndicator
                     ? Border(
-                  bottom: indicatorType == IndicatorType.bottom
-                      ? BorderSide(
-                    color: currentIndex == index
-                        ? selectedColor ??
-                        bottomTheme.selectedItemColor!
-                        : Colors.transparent,
-                    width: lineIndicatorWidth,
-                  )
-                      : const BorderSide(color: Colors.transparent),
-                  top: indicatorType == IndicatorType.top
-                      ? BorderSide(
-                    color: currentIndex == index
-                        ? selectedColor ??
-                        bottomTheme.selectedItemColor!
-                        : Colors.transparent,
-                    width: lineIndicatorWidth,
-                  )
-                      : const BorderSide(color: Colors.transparent),
-                )
+                        bottom: indicatorType == IndicatorType.bottom
+                            ? BorderSide(
+                                color: currentIndex == index
+                                    ? selectedColor ??
+                                        bottomTheme.selectedItemColor!
+                                    : Colors.transparent,
+                                width: lineIndicatorWidth,
+                              )
+                            : const BorderSide(color: Colors.transparent),
+                        top: indicatorType == IndicatorType.top
+                            ? BorderSide(
+                                color: currentIndex == index
+                                    ? selectedColor ??
+                                        bottomTheme.selectedItemColor!
+                                    : Colors.transparent,
+                                width: lineIndicatorWidth,
+                              )
+                            : const BorderSide(color: Colors.transparent),
+                      )
                     : null,
               ),
               padding: const EdgeInsets.symmetric(vertical: 7.0),
@@ -205,4 +207,3 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
     );
   }
 }
-
