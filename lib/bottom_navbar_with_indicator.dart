@@ -1,9 +1,9 @@
 library bottom_navbar_with_indicator;
 
 import 'package:flutter/material.dart';
-
+///enum's for indicator type.
 enum IndicatorType { top, bottom }
-
+/// customer line indicator bottom navigation bar class.
 class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   final Color? backgroundColor;
   final List<CustomBottomBarItems> customBottomBarItems;
@@ -39,6 +39,7 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
     this.indicatorType = IndicatorType.top,
     this.gradient,
   });
+  /// body of nav bar.
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
