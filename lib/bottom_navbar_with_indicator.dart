@@ -1,8 +1,17 @@
+/// Documentation
+///
+/// bottom_navbar_with_indicator library.
 library bottom_navbar_with_indicator;
 
 import 'package:flutter/material.dart';
-///enum's for indicator type.
+
+/// Documentation
+///
+/// enum's for indicator type.
 enum IndicatorType { top, bottom }
+
+/// Documentation
+///
 /// customer line indicator bottom navigation bar class.
 class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   final Color? backgroundColor;
@@ -39,6 +48,7 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
     this.indicatorType = IndicatorType.top,
     this.gradient,
   });
+
   /// body of nav bar.
   @override
   Widget build(BuildContext context) {
@@ -82,8 +92,14 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   }
 }
 
+/// Documentation
+///
+/// custom bottom bar items model.
 class CustomBottomBarItems {
+  /// pass icon with type IconData
   final IconData icon;
+
+  /// pass label with type .
   final String label;
 
   CustomBottomBarItems({
@@ -92,15 +108,20 @@ class CustomBottomBarItems {
   });
 }
 
+/// Documentation
+///
+/// custom line indicator bottom navbar items stateless widget.
 class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
+  /// pass icon with type IconData
   final IconData? icon;
+
+  /// pass label with type .
   final String? label;
   final Color? selectedColor;
   final Color? unSelectedColor;
   final double unSelectedFontSize;
   final double selectedIconSize;
   final double unselectedIconSize;
-
   final double selectedFontSize;
   final Color? splashColor;
   final int? currentIndex;
@@ -133,7 +154,6 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
         BottomNavigationBarTheme.of(context);
-
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(right: 7),
