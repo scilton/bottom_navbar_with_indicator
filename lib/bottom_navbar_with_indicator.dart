@@ -29,6 +29,8 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   final double selectedIconSize;
   final double unselectedIconSize;
   final LinearGradient? gradient;
+  final TextStyle? selectedLabelStyle;
+  final TextStyle? unselectedLabelStyle;
 
   const CustomLineIndicatorBottomNavbar({
     super.key,
@@ -47,6 +49,8 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
     this.lineIndicatorWidth = 3,
     this.indicatorType = IndicatorType.top,
     this.gradient,
+    this.selectedLabelStyle,
+    this.unselectedLabelStyle,
   });
 
   /// body of nav bar.
@@ -74,6 +78,8 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
                   unSelectedFontSize: unselectedFontSize,
                   selectedFontSize: selectedFontSize,
                   unselectedIconSize: unselectedIconSize,
+                  selectedLabelStyle: selectedLabelStyle,
+                  unselectedLabelStyle: unselectedLabelStyle,
                   selectedIconSize: selectedIconSize,
                   splashColor: splashColor,
                   currentIndex: currentIndex,
@@ -95,9 +101,9 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
 /// Documentation
 ///
 /// custom bottom bar items model.
-class CustomBottomBarItems {
+class CustomBottomBarItems<T> {
   /// pass icon with type IconData
-  final IconData icon;
+  final T icon;
 
   /// pass label with type .
   final String label;
@@ -105,15 +111,16 @@ class CustomBottomBarItems {
   CustomBottomBarItems({
     required this.icon,
     required this.label,
-  });
+  }) : assert(icon is IconData || icon is Widget,
+            'CustomBottomBarItems only support IconData and Widget');
 }
 
 /// Documentation
 ///
 /// custom line indicator bottom navbar items stateless widget.
 class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
-  /// pass icon with type IconData
-  final IconData? icon;
+  /// pass icon with type IconData or Widget
+  final dynamic icon;
 
   /// pass label with type .
   final String? label;
@@ -130,10 +137,12 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   final bool enableLineIndicator;
   final double lineIndicatorWidth;
   final IndicatorType indicatorType;
+  final TextStyle? selectedLabelStyle;
+  final TextStyle? unselectedLabelStyle;
 
   const CustomLineIndicatorBottomNavbarItems({
     super.key,
-    this.icon,
+    required this.icon,
     this.label,
     this.selectedColor,
     this.unSelectedColor,
@@ -148,7 +157,27 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
     this.enableLineIndicator = true,
     this.lineIndicatorWidth = 3,
     this.indicatorType = IndicatorType.top,
+    this.selectedLabelStyle,
+    this.unselectedLabelStyle,
   });
+
+  TextStyle _getLabelStyle(BuildContext context) {
+    final bottomTheme = BottomNavigationBarTheme.of(context);
+
+    if (currentIndex == index) {
+      return selectedLabelStyle ??
+          TextStyle(
+            fontSize: selectedFontSize,
+            color: selectedColor ?? bottomTheme.selectedItemColor,
+          );
+    } else {
+      return unselectedLabelStyle ??
+          TextStyle(
+            fontSize: unSelectedFontSize,
+            color: unSelectedColor ?? bottomTheme.unselectedItemColor,
+          );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -194,15 +223,17 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
               // height: 60,
               child: Column(
                 children: [
-                  Icon(
-                    icon,
-                    size: currentIndex == index
-                        ? selectedIconSize
-                        : unselectedIconSize,
-                    color: currentIndex == index
-                        ? selectedColor ?? bottomTheme.unselectedItemColor
-                        : unSelectedColor,
-                  ),
+                  icon is Widget
+                      ? icon
+                      : Icon(
+                          icon,
+                          size: currentIndex == index
+                              ? selectedIconSize
+                              : unselectedIconSize,
+                          color: currentIndex == index
+                              ? selectedColor ?? bottomTheme.unselectedItemColor
+                              : unSelectedColor,
+                        ),
                   const SizedBox(
                     height: 5.0,
                   ),
@@ -210,14 +241,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
                     '$label',
                     textAlign: TextAlign.center,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: currentIndex == index
-                          ? selectedFontSize
-                          : unSelectedFontSize,
-                      color: currentIndex == index
-                          ? selectedColor ?? bottomTheme.unselectedItemColor
-                          : unSelectedColor,
-                    ),
+                    style: _getLabelStyle(context),
                   ),
                 ],
               ),
