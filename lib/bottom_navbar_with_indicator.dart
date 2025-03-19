@@ -187,7 +187,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  height: 5,
+                  height: 8,
                   decoration:  BoxDecoration(
                     color: currentIndex == index
                         ? selectedColor ??
