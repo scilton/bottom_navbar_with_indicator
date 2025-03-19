@@ -57,7 +57,7 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
-        BottomNavigationBarTheme.of(context);
+    BottomNavigationBarTheme.of(context);
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -112,7 +112,7 @@ class CustomBottomBarItems<T> {
     required this.icon,
     required this.label,
   }) : assert(icon is IconData || icon is Widget,
-            'CustomBottomBarItems only support IconData and Widget');
+  'CustomBottomBarItems only support IconData and Widget');
 }
 
 /// Documentation
@@ -182,7 +182,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
-        BottomNavigationBarTheme.of(context);
+    BottomNavigationBarTheme.of(context);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(right: 7),
@@ -193,58 +193,72 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
             onTap: () {
               onTap(index);
             },
-            child: Container(
-              decoration: BoxDecoration(
-                border: enableLineIndicator
-                    ? Border(
-                        bottom: indicatorType == IndicatorType.bottom
-                            ? BorderSide(
-                                color: currentIndex == index
-                                    ? selectedColor ??
-                                        bottomTheme.selectedItemColor!
-                                    : Colors.transparent,
-                                width: lineIndicatorWidth,
-                              )
-                            : const BorderSide(color: Colors.transparent),
-                        top: indicatorType == IndicatorType.top
-                            ? BorderSide(
-                                color: currentIndex == index
-                                    ? selectedColor ??
-                                        bottomTheme.selectedItemColor!
-                                    : Colors.transparent,
-                                width: lineIndicatorWidth,
-                              )
-                            : const BorderSide(color: Colors.transparent),
-                      )
-                    : null,
-              ),
-              padding: const EdgeInsets.symmetric(vertical: 7.0),
-              // width: 70,
-              // height: 60,
-              child: Column(
-                children: [
-                  icon is Widget
-                      ? icon
-                      : Icon(
-                          icon,
-                          size: currentIndex == index
-                              ? selectedIconSize
-                              : unselectedIconSize,
-                          color: currentIndex == index
-                              ? selectedColor ?? bottomTheme.unselectedItemColor
-                              : unSelectedColor,
-                        ),
-                  const SizedBox(
-                    height: 5.0,
+            child: Column(
+              children: [
+                Container(
+                  height: 5,
+                  decoration:  BoxDecoration(
+                    color: currentIndex == index
+                        ? selectedColor ??
+                        bottomTheme.selectedItemColor!
+                        : Colors.transparent,
+                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
                   ),
-                  Text(
-                    '$label',
-                    textAlign: TextAlign.center,
-                    overflow: TextOverflow.ellipsis,
-                    style: _getLabelStyle(context),
+                ),
+                Container(
+                  // decoration: BoxDecoration(
+                  //   border: enableLineIndicator
+                  //       ? Border(
+                  //     bottom: indicatorType == IndicatorType.bottom
+                  //         ? BorderSide(
+                  //       color: currentIndex == index
+                  //           ? selectedColor ??
+                  //           bottomTheme.selectedItemColor!
+                  //           : Colors.transparent,
+                  //       width: lineIndicatorWidth,
+                  //     )
+                  //         : const BorderSide(color: Colors.transparent),
+                  //     top: indicatorType == IndicatorType.top
+                  //         ? BorderSide(
+                  //       color: currentIndex == index
+                  //           ? selectedColor ??
+                  //           bottomTheme.selectedItemColor!
+                  //           : Colors.transparent,
+                  //       width: lineIndicatorWidth,
+                  //     )
+                  //         : const BorderSide(color: Colors.transparent),
+                  //   )
+                  //       : null,
+                  // ),
+                  padding: const EdgeInsets.symmetric(vertical: 7.0),
+                  // width: 70,
+                  // height: 60,
+                  child: Column(
+                    children: [
+                      icon is Widget
+                          ? icon
+                          : Icon(
+                        icon,
+                        size: currentIndex == index
+                            ? selectedIconSize
+                            : unselectedIconSize,
+                        color: currentIndex == index
+                            ? selectedColor ?? bottomTheme.unselectedItemColor
+                            : unSelectedColor,
+                      ),
+                      const SizedBox(
+                        height: 5.0,
+                      ),
+                      Text(
+                        '$label',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.ellipsis,
+                        style: _getLabelStyle(context),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
