@@ -193,7 +193,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
                         ? selectedColor ??
                         bottomTheme.selectedItemColor!
                         : Colors.transparent,
-                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(7)),
+                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(10)),
                   ),
                 ),
                 Container(
