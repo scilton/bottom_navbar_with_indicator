@@ -53,7 +53,7 @@ class CustomLineIndicatorBottomNavbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
-        BottomNavigationBarTheme.of(context);
+    BottomNavigationBarTheme.of(context);
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -173,7 +173,7 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final BottomNavigationBarThemeData bottomTheme =
-        BottomNavigationBarTheme.of(context);
+    BottomNavigationBarTheme.of(context);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.only(right: 7),
@@ -186,18 +186,17 @@ class CustomLineIndicatorBottomNavbarItems extends StatelessWidget {
             },
             child: Column(
               children: [
-              Container(
-              height: 5,
-              decoration:  BoxDecoration(
-                color: currentIndex == index
-                    ? selectedColor ??
-                    bottomTheme.selectedItemColor!
-                    : Colors.transparent,
-                borderRadius: const BorderRadius.vertical(bottom: Radius.circular(5)),
-              ),
-            ),
                 Container(
-                  decoration: BoxDecoration(
+                  height: 5,
+                  decoration:  BoxDecoration(
+                    color: currentIndex == index
+                        ? selectedColor ??
+                        bottomTheme.selectedItemColor!
+                        : Colors.transparent,
+                    borderRadius: const BorderRadius.vertical(bottom: Radius.circular(7)),
+                  ),
+                ),
+                Container(
                   padding: const EdgeInsets.symmetric(vertical: 7.0),
                   // width: 70,
                   // height: 60,
